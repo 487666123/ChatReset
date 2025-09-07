@@ -1,0 +1,20 @@
+重置泰拉瑞亚的聊天功能
+聊天添加滚动条，添加滚动动画。
+聊天界面输入框光标支持移动，支持输入换行。
+
+后续会添加接各大直播平台的功能，可以在游戏中实时查看观众消息。
+
+Mod 还不完善，欢迎反馈问题，会持续更新！
+
+Reset Terraria's chat functionality
+Added a scrollbar to the chat, with scrolling animation.
+The chat input box now supports cursor movement and line breaks.
+
+In the future, features to integrate with major live streaming platforms will be added, allowing players to view viewer messages in real time within the game.
+
+The mod is still under development, so feedback is welcome. It will be continuously updated!
+
+TerrariaMod 交流群 (已满): 971038831
+ForOne 模组交流群: 574904188
+
+爱发电: https://afdian.com/a/tMLZero
