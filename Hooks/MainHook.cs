@@ -2,9 +2,10 @@ using ChatReset.UserInterface;
 
 namespace ChatReset.Hooks;
 
-public class MainHook : ModSystem
+public class MainHook : ILoadable
 {
-    public override void Load()
+    public void Unload() { }
+    public void Load(Mod mod)
     {
         // 按回车键打开聊天框的时候
         On_Main.OpenPlayerChat += On_MainOnOpenPlayerChat;
@@ -29,9 +30,8 @@ public class MainHook : ModSystem
         Main.drawingPlayerChat = false;
     }
 
-    private static bool On_ChatManagerOnAddChatText(On_ChatManager.orig_AddChatText orig, DynamicSpriteFont font,
-        string text,
-        Vector2 basescale)
+    private static bool On_ChatManagerOnAddChatText(On_ChatManager.orig_AddChatText orig,
+        DynamicSpriteFont font, string text, Vector2 baseScale)
     {
         if (ChatWindowUI.Instance is { } chatUI && chatUI.Enabled)
         {

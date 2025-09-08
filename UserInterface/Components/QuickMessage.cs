@@ -1,6 +1,6 @@
 namespace ChatReset.UserInterface.Components;
 
-public class QuickMessage : SUIText
+public class QuickMessage : UITextView
 {
     public QuickMessage(string sender, string message, Color messageColor)
     {
@@ -8,7 +8,7 @@ public class QuickMessage : SUIText
 
         TextScale = 0.8f;
         TextColor = messageColor;
-        Text = $"[c/ff9999:<{DateTime.Now}>] [c/ffff00:<{sender}>] {message}";
+        Text = $"[c/ff9999:{DateTime.Now.ToShortTimeString()}] [c/ffff00:{sender}] {message}";
 
         SetWidth(0f, 1f);
     }

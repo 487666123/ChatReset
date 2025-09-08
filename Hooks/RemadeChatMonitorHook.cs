@@ -4,18 +4,22 @@ using Terraria.GameContent.UI.Chat;
 
 namespace ChatReset.Hooks;
 
-public partial class RemadeChatMonitorHook : ModSystem
+public partial class RemadeChatMonitorHook : ILoadable
 {
-    public override void Load()
+    public void Load(Mod mod)
     {
         On_RemadeChatMonitor.AddNewMessage += AddNewMessageHook;
     }
 
-    private static void AddNewMessageHook(On_RemadeChatMonitor.orig_AddNewMessage orig, RemadeChatMonitor self,
-        string text,
-        Color color, int widthlimitinpixels)
+    public void Unload()
     {
-        // orig?.Invoke(self, text, color, widthlimitinpixels);
+        On_RemadeChatMonitor.AddNewMessage -= AddNewMessageHook;
+    }
+
+    private static void AddNewMessageHook(On_RemadeChatMonitor.orig_AddNewMessage orig,
+        RemadeChatMonitor self, string text, Color color, int widthLimitInPixels)
+    {
+        // orig?.Invoke(self, text, color, widthLimitInPixels);
 
         if (ChatWindowUI.Instance is not { } chatUI || string.IsNullOrEmpty(text)) return;
         var sender = MatchUsername().Match(text);

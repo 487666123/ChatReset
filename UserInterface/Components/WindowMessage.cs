@@ -1,9 +1,9 @@
 ﻿namespace ChatReset.UserInterface.Components;
 
-public class WindowMessage : View
+public class WindowMessage : UIElementGroup
 {
-    public SUIText SenderText { get; private set; }
-    public SUIText MessageText { get; private set; }
+    public UITextView SenderText { get; private set; }
+    public UITextView MessageText { get; private set; }
 
     /// <summary>
     /// 发送者和消息内容
@@ -14,36 +14,36 @@ public class WindowMessage : View
     /// <param name="myMessage">true: 消息在右边</param>
     public WindowMessage(string sender, string message, Color messageColor, bool myMessage = false)
     {
-        SpecifyWidth = true;
-        Width.Percent = 1f;
-        Display = Display.Flexbox;
-        LayoutDirection = LayoutDirection.Row;
+        FitWidth = true;
+        SetWidth(percent: 1f);
+        LayoutType = LayoutType.Flexbox;
+        FlexDirection = FlexDirection.Row;
         MainAlignment = myMessage ? MainAlignment.End : MainAlignment.Start;
 
-        var card = new View
+        var card = new UIElementGroup
         {
-            Display = Display.Flexbox,
-            LayoutDirection = LayoutDirection.Column,
+            LayoutType = LayoutType.Flexbox,
+            FlexDirection = FlexDirection.Column,
             Gap = new Vector2(4f),
             Border = 2f,
             BorderColor = Color.Black * 0.2f,
-            BgColor = Color.Black * 0.1f,
-            CornerRadius = new Vector4(8f),
+            BackgroundColor = Color.Black * 0.1f,
+            BorderRadius = new Vector4(8f),
         }.Join(this);
         card.SetWidth(0f, 0.65f);
         card.SetPadding(8f);
 
-        var header = new View
+        var header = new UIElementGroup
         {
-            Display = Display.Flexbox,
-            LayoutDirection = LayoutDirection.Row,
+            LayoutType = LayoutType.Flexbox,
+            FlexDirection = FlexDirection.Row,
             MainAlignment = MainAlignment.SpaceBetween,
         }.Join(card);
         header.SetWidth(0f, 1f);
 
         if (myMessage)
         {
-            new SUIText
+            new UITextView
             {
                 TextScale = 0.7f,
                 TextColor = Color.Pink,
@@ -52,7 +52,7 @@ public class WindowMessage : View
             }.Join(header);
         }
 
-        SenderText = new SUIText
+        SenderText = new UITextView
         {
             TextScale = 0.7f,
             TextColor = Color.Yellow,
@@ -62,7 +62,7 @@ public class WindowMessage : View
 
         if (!myMessage)
         {
-            new SUIText
+            new UITextView
             {
                 TextScale = 0.7f,
                 TextColor = Color.Pink,
@@ -71,7 +71,7 @@ public class WindowMessage : View
             }.Join(header);
         }
 
-        MessageText = new SUIText
+        MessageText = new UITextView
         {
             WordWrap = true,
             TextScale = 0.8f,
